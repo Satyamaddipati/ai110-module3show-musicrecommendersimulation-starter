@@ -104,7 +104,23 @@ Because only one song in the catalog is labeled "lofi," the Chill profile's #2 a
 
 ## Reflection
 
-See `model_card.md` for the full model card and personal reflection.
+# Reflection — Profile Comparison Notes
+
+## High-Energy Pop vs. Chill Lofi / Ambient
+
+The High-Energy Pop profile fills its top 5 almost entirely with pop songs (a genre bonus applied to 4 of 5), all with energy scores above 0.6. The Chill Lofi profile, in contrast, gets only one genre match in the entire catalog. Its #2 and #3 picks (Weightless, Sapphire) win purely on energy and mood similarity—no genre bonus. The output "feels" right for both (high-energy pop gets bangers, chill gets quiet tracks), but the underlying reason is completely different. For pop users, genre is doing the heavy lifting. For lofi users, the system essentially falls back to numeric similarity alone.
+
+This makes sense: a larger catalog would give lofi users more genuine genre matches. With only 20 songs, niche profiles get a weaker "confidence" in their recommendations, even when the outputs look reasonable.
+
+## High-Energy Pop vs. Deep Intense Rock
+
+Both profiles want high energy (0.80 vs. 0.85), but their genre and moods diverge. The Pop profile gets a tight cluster of pop songs; the Rock profile gets two Coldplay/Linkin Park tracks that are more "alternative" than "deep intense." The most intense song (Enter Sandman) ranks 4th because the genre mismatch ("metal", ≠ "rock") costs 2 points.
+
+What changed: mood and genre labels matter more than the numbers. The Rock profile wanted `mood: angry`—that boosted Enter Sandman (+1.0) and Blacker the Berry (+1.0), pulling two non-rock songs into the top 5. This makes sense: when genre doesn't match, the system compensates with mood and energy, and the results drift toward "energetic and angry" rather than "rock."
+
+## Chill Lofi / Ambient vs. Deep Intense Rock
+
+These are essentially opposite profiles—low energy vs. high energy, calm vs. angry. The outputs are completely distinct with zero overlap. Piano Man (low energy, nostalgic) appears in the Chill top-5 but nowhere near the Rock top-5. Enter Sandman appears in Rock but would rank dead last for Chill. This confirms the system correctly differentiates opposite vibes, which is the basic sanity check for any recommender.
 
 ---
 
